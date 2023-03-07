@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "mathenhancer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Iliasnolsson/MathEnhancer",
+      "state" : {
+        "revision" : "06646549b134dd68983e08d8fd4793a60a69cdfe",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -7,6 +7,7 @@
 
 import QuartzCore
 import MathEnhancer
+import FundamentalEnhancer
 
 public extension CGRect {
     

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FundamentalEnhancer
+import CoordinateEnums
 
 public extension Side {
     

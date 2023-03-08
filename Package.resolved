@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "coordinateenums",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Iliasnolsson/CoordinateEnums",
+      "state" : {
+        "revision" : "05f4924adc4b79944138154edc688d29f939be5f",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "fundamentalenhancer",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Iliasnolsson/FundamentalEnhancer",

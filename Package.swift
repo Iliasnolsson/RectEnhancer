@@ -19,6 +19,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/Iliasnolsson/MathEnhancer", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/Iliasnolsson/CoordinateEnums", .upToNextMajor(from: "1.0.0")),
         .package(url: "https://github.com/Iliasnolsson/FundamentalEnhancer", .upToNextMajor(from: "1.0.0"))
     ],
     targets: [
@@ -28,6 +29,7 @@ let package = Package(
             name: "RectEnhancer",
             dependencies: [
                 "MathEnhancer",
+                "CoordinateEnums",
                 "FundamentalEnhancer"
             ]),
         .testTarget(

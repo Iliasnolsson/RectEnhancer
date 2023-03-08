@@ -10,11 +10,16 @@ import MathEnhancer
 
 public extension CGRect {
     
-    func increase(byTranslation translation: CGPoint, fromAnchor anchor: RectLocation, keepAspect: Bool) -> CGRect {
-        return increase(byTranslation: translation, fromAnchor: anchor, keepAspect: keepAspect, containWithinRect: nil, magnetLines: [], snapOnDistance: 0, magnetLinesCompletion: nil)
+    func increase(byTranslation translation: CGPoint, fromAnchor anchor: RectLocation) -> CGRect {
+        return internalIncrease(byTranslation: translation, fromAnchor: anchor, keepAspect: false, containWithinRect: nil, snapTo: nil)
     }
     
-    func increase(byTranslation translation: CGPoint, fromAnchor anchor: RectLocation, keepAspect: Bool, containWithinRect parentRect: CGRect?, magnetLines: [{AxisLine}], snapOnDistance: CGFloat, magnetLinesCompletion: (([AxisLine]) -> ())? = nil) -> CGRect {
+    func increase(byTranslation translation: CGPoint, fromAnchor anchor: RectLocation, options: RectIncreaseOptions) -> CGRect {
+        return internalIncrease(byTranslation: translation, fromAnchor: anchor, keepAspect: options.keepAspectInternal, containWithinRect: options.containWithinRect, snapTo: options.snapToMagnets)
+    }
+    
+    private func internalIncrease(byTranslation translation: CGPoint, fromAnchor anchor: RectLocation, keepAspect: Bool, containWithinRect parentRect: CGRect? = nil, snapTo magnets: RectMagnets? = nil) -> CGRect {
+        let magnets = magnets ?? .init(lines: [], snapOnDistance: 0)
         var translation = translation
         let handle = point(forLocation: anchor.opposite)
         var handleTranslated = handle + translation
@@ -32,34 +37,34 @@ public extension CGRect {
         }
         translation = handleTranslated - handle
         
-        if anchor != .middle && !magnetLines.isEmpty {
-            var magnetLines = magnetLines
+        if anchor != .middle && !magnets.lines.isEmpty {
+            var lines = magnets.lines
             switch anchor {
             case .middleTop, .middleBottom:
-                magnetLines = magnetLines.filter {$0.axis == .vertical}
+                lines = lines.filter {$0.axis == .vertical}
             case .middleLeft, .middleRight:
-                magnetLines = magnetLines.filter {$0.axis == .horizontal}
+                lines = lines.filter {$0.axis == .horizontal}
             default:
                 break
             }
             
-            var linesUsed = [AxisLine]()
-            let magnetAndDistances: [(magnet: AxisLine, distance: CGFloat)] = magnetLines.map {($0, abs($0.offset - handleTranslated.float(onAxis: $0.axis)))}
+            var linesUsed = [RectMagneticLine]()
+            let magnetAndDistances: [(magnet: RectMagneticLine, distance: CGFloat)] = magnets.lines.map {($0, abs($0.offset - handleTranslated.float(onAxis: $0.axis)))}
             if let (nearestHorizontalMagnet, horizontalMagnetDistance) = magnetAndDistances.filter({$0.magnet.axis == .horizontal}).min(by: {a, b in a.distance < b.distance}) {
-                if horizontalMagnetDistance < snapOnDistance {
+                if horizontalMagnetDistance < magnets.snapOnDistance {
                     linesUsed.append(nearestHorizontalMagnet)
                     translation.x = nearestHorizontalMagnet.offset - handle.x
                 }
             }
             if let (nearestVerticalMagnet, verticalMagnetDistance) = magnetAndDistances.filter({$0.magnet.axis == .vertical}).min(by: {a, b in a.distance < b.distance}) {
-                if verticalMagnetDistance < snapOnDistance {
+                if verticalMagnetDistance < magnets.snapOnDistance {
                     linesUsed.append(nearestVerticalMagnet)
                     translation.y = nearestVerticalMagnet.offset - handle.y
                 }
             }
-            magnetLinesCompletion?(linesUsed)
+            magnets.linesUsed?(linesUsed)
         } else {
-            magnetLinesCompletion?([])
+            magnets.linesUsed?([])
         }
         
         let newFrame = {() -> CGRect in

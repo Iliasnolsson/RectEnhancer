@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "fundamentalenhancer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Iliasnolsson/FundamentalEnhancer",
+      "state" : {
+        "revision" : "8775d8e911264a0a4101f8157edd879b9aa65db7",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "mathenhancer",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Iliasnolsson/MathEnhancer",

@@ -52,13 +52,13 @@ public extension CGRect {
             var linesUsed = [RectMagneticLine]()
             let magnetAndDistances: [(magnet: RectMagneticLine, distance: CGFloat)] = magnets.lines.map {($0, abs($0.offset - handleTranslated.float(onAxis: $0.axis)))}
             if let (nearestHorizontalMagnet, horizontalMagnetDistance) = magnetAndDistances.filter({$0.magnet.axis == .horizontal}).min(by: {a, b in a.distance < b.distance}) {
-                if horizontalMagnetDistance < magnets.snapOnDistance {
+                if horizontalMagnetDistance <= magnets.snapOnDistance {
                     linesUsed.append(nearestHorizontalMagnet)
                     translation.x = nearestHorizontalMagnet.offset - handle.x
                 }
             }
             if let (nearestVerticalMagnet, verticalMagnetDistance) = magnetAndDistances.filter({$0.magnet.axis == .vertical}).min(by: {a, b in a.distance < b.distance}) {
-                if verticalMagnetDistance < magnets.snapOnDistance {
+                if verticalMagnetDistance <= magnets.snapOnDistance {
                     linesUsed.append(nearestVerticalMagnet)
                     translation.y = nearestVerticalMagnet.offset - handle.y
                 }

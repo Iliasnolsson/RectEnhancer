@@ -29,13 +29,13 @@ public extension RectIncreaseOptions {
         return .init(keepAspect: false, snapTo: magnets, andContainWithin: nil)
     }
     
-    
     static func containWithin(_ rect: CGRect) -> RectIncreaseOptions {
         return .init(keepAspect: false, snapTo: nil, andContainWithin: rect)
     }
     
     static var keepAspect: RectIncreaseOptions = .init(keepAspect: true, snapTo: nil, andContainWithin: nil)
     
+    static var none: RectIncreaseOptions = .init(keepAspect: false, snapTo: nil)
     
     func setKeepAspect(to value: Bool) -> RectIncreaseOptions {
         return .init(keepAspect: value, snapTo: snapToMagnets, andContainWithin: containWithinRect)

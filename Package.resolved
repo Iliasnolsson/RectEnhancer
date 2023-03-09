@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Iliasnolsson/MathEnhancer",
       "state" : {
-        "revision" : "0239532acc8f8a16420e802e44aa621c49e82d48",
-        "version" : "1.0.1"
+        "revision" : "c8a1a558ddf503acf2b6e52bc5680daaf88af237",
+        "version" : "1.0.2"
       }
     }
   ],

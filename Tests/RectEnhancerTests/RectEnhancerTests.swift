@@ -9,10 +9,9 @@ final class RectEnhancerTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        let decimal = 1000
+        let decimal = 3
         func increase(_ rect: CGRect, by: CGPoint, from anchor: RectLocation, expects: CGRect, options: RectIncreaseOptions) {
             let modified = rect.increase(byTranslation: by, fromAnchor: anchor, options: options)
-            print("Produced: ", modified.debugDescription)
             if modified.origin.rounded(decimal: decimal) == expects.origin.rounded(decimal: decimal) {
                 if modified.size.rounded(decimal: decimal) == expects.size.rounded(decimal: decimal) {
                     return;

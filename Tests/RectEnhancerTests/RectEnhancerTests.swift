@@ -49,4 +49,38 @@ final class RectEnhancerTests: XCTestCase {
                                         snapOnDistance: 10)))
         
     }
+    
+    
+    func testBoundingRect() {
+        let rect1 = CGRect(x: 10, y: 20, width: 30, height: 40)
+        let rect2 = CGRect(x: 100, y: 200, width: 50, height: 60)
+        let rect3 = CGRect(x: 70, y: 80, width: 90, height: 100)
+        let rectArray = [rect1, rect2, rect3]
+        
+        // Test that the bounding rect is calculated correctly
+        if let boundingRect = rectArray.boundingRect() {
+            XCTAssertEqual(boundingRect.origin.x, 10, accuracy: 0.001)
+            XCTAssertEqual(boundingRect.origin.y, 20, accuracy: 0.001)
+            XCTAssertEqual(boundingRect.size.width, 150, accuracy: 0.001)
+            XCTAssertEqual(boundingRect.size.height, 240, accuracy: 0.001)
+        } else {
+            XCTFail("Bounding Rect should not be nil")
+        }
+        
+        // Test that an empty array returns nil
+        let emptyRectArray = [CGRect]()
+        XCTAssertNil(emptyRectArray.boundingRect())
+        
+        // Test that an array with only one rectangle returns that rectangle as the bounding rect
+        let singleRectArray = [rect1]
+        if let singleRectBoundingRect = singleRectArray.boundingRect() {
+            XCTAssertEqual(singleRectBoundingRect.origin.x, 10, accuracy: 0.001)
+            XCTAssertEqual(singleRectBoundingRect.origin.y, 20, accuracy: 0.001)
+            XCTAssertEqual(singleRectBoundingRect.size.width, 30, accuracy: 0.001)
+            XCTAssertEqual(singleRectBoundingRect.size.height, 40, accuracy: 0.001)
+        } else {
+            XCTFail("Bounding Rect should not be nil")
+        }
+    }
+    
 }

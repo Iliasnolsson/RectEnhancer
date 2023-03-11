@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Iliasnolsson/CoordinateEnums",
       "state" : {
-        "revision" : "4441cbd53a62a95cc070a6a8389d47d44d31a8ae",
-        "version" : "1.0.1"
+        "revision" : "b556bda6f0941d02651b9dff39391c5aba834eff",
+        "version" : "1.0.3"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Iliasnolsson/MathEnhancer",
       "state" : {
-        "revision" : "c8a1a558ddf503acf2b6e52bc5680daaf88af237",
-        "version" : "1.0.2"
+        "revision" : "bcde181a59b0b1a2e730b84f924b80e87095a766",
+        "version" : "1.1.0"
       }
     }
   ],

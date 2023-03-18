@@ -10,12 +10,12 @@ import MathEnhancer
 
 public extension CGRect {
     
-    func increase(byTranslation translation: CGPoint, fromAnchor anchor: RectLocation) -> CGRect {
-        return internalIncrease(byTranslation: translation, fromAnchor: anchor, keepAspect: false, containWithinRect: nil, snapTo: nil)
+    func increase(byTranslation translation: CGPoint, byDragging anchor: RectLocation) -> CGRect {
+        return internalIncrease(byTranslation: translation, fromAnchor: anchor.opposite, keepAspect: false, containWithinRect: nil, snapTo: nil)
     }
     
-    func increase(byTranslation translation: CGPoint, fromAnchor anchor: RectLocation, options: RectIncreaseOptions) -> CGRect {
-        return internalIncrease(byTranslation: translation, fromAnchor: anchor, keepAspect: options.keepAspectInternal, containWithinRect: options.containWithinRect, snapTo: options.snapToMagnets)
+    func increase(byTranslation translation: CGPoint, byDragging anchor: RectLocation, options: RectIncreaseOptions) -> CGRect {
+        return internalIncrease(byTranslation: translation, fromAnchor: anchor.opposite, keepAspect: options.keepAspectInternal, containWithinRect: options.containWithinRect, snapTo: options.snapToMagnets)
     }
     
     private func internalIncrease(byTranslation translation: CGPoint, fromAnchor anchor: RectLocation, keepAspect: Bool, containWithinRect parentRect: CGRect? = nil, snapTo magnets: RectMagnets? = nil) -> CGRect {
@@ -152,8 +152,6 @@ public extension CGRect {
         let anchorWithDistance: [LocationAndDistance] = anchorWithLocation.map {($0.anchor, $0.point.distanceTo(p))}
         return anchorWithDistance.min(by: {a, b in a.distance < b.distance})!
     }
-    
-    
     
     func point(forLocation anchor: RectLocation) -> CGPoint {
         switch anchor {

@@ -4,13 +4,26 @@ import XCTest
 
 final class RectEnhancerTests: XCTestCase {
     
+    
+    func testNearestLocation() {
+         // Set up the test data
+         let rect = CGRect(x: 0, y: 0, width: 100, height: 100)
+         let point = CGPoint(x: 75, y: 75)
+
+         // Call the nearestLocation(forPoint:) function
+         let nearestLocation = rect.nearestLocation(forPoint: point)
+
+         // Verify the result
+         XCTAssertEqual(nearestLocation.anchor, RectLocation.bottomRight, "Expected nearest location to be .bottomRight")
+     }
+    
     func test() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
         let decimal = 3
         func increase(_ rect: CGRect, by: CGPoint, from anchor: RectLocation, expects: CGRect, options: RectIncreaseOptions) {
-            let modified = rect.increase(byTranslation: by, fromAnchor: anchor, options: options)
+            let modified = rect.increase(byTranslation: by, byDragging: anchor.opposite, options: options)
             if modified.origin.rounded(decimal: decimal) == expects.origin.rounded(decimal: decimal) {
                 if modified.size.rounded(decimal: decimal) == expects.size.rounded(decimal: decimal) {
                     return;

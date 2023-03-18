@@ -10,21 +10,12 @@
       }
     },
     {
-      "identity" : "fundamentalenhancer",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Iliasnolsson/FundamentalEnhancer",
-      "state" : {
-        "revision" : "1315befbb9306475be6fe1e06c280b14a5fa4095",
-        "version" : "1.0.1"
-      }
-    },
-    {
       "identity" : "mathenhancer",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Iliasnolsson/MathEnhancer",
       "state" : {
-        "revision" : "bcde181a59b0b1a2e730b84f924b80e87095a766",
-        "version" : "1.1.0"
+        "revision" : "16b94feb3fb66f689d6cf7b8d544fbd4d3cb8e98",
+        "version" : "1.1.1"
       }
     }
   ],

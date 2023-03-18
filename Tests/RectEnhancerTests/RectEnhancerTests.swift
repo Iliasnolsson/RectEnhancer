@@ -6,16 +6,17 @@ final class RectEnhancerTests: XCTestCase {
     
     
     func testNearestLocation() {
-         // Set up the test data
-         let rect = CGRect(x: 0, y: 0, width: 100, height: 100)
-         let point = CGPoint(x: 75, y: 75)
-
-         // Call the nearestLocation(forPoint:) function
-         let nearestLocation = rect.nearestLocation(forPoint: point)
-
-         // Verify the result
-         XCTAssertEqual(nearestLocation.anchor, RectLocation.bottomRight, "Expected nearest location to be .bottomRight")
-     }
+        // Set up the test data
+        let rect = CGRect(x: 0, y: 0, width: 100, height: 100)
+        let point = CGPoint(x: 90, y: 90)
+        
+        // Call the nearestLocation(forPoint:) function
+        let nearestLocation = rect.nearestLocation(forPoint: point)
+        
+        // Verify the result
+        XCTAssertEqual(nearestLocation.anchor, RectLocation.bottomRight, "Expected nearest location to be .bottomRight")
+    }
+    
     
     func test() throws {
         // This is an example of a functional test case.

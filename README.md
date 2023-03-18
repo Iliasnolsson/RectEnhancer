@@ -83,16 +83,6 @@ Get the nearest anchor point for a given CGPoint:
 
 ```swift
 let rect = CGRect(x: 0, y: 0, width: 100, height: 100)
-let point = CGPoint(x: 75, y: 75)
-let nearestLocation = rect.nearestLocation
-```
-
-> you stopped writing at the title Finding the nearest anchor point. Could you please continue
-
-for a given CGPoint:
-
-```swift
-let rect = CGRect(x: 0, y: 0, width: 100, height: 100)
 let point = CGPoint(x: 90, y: 90)
 let nearestLocation = rect.nearestLocation(forPoint: point)
 // .bottomRight
